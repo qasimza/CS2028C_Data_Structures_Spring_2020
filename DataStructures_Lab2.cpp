@@ -2,20 +2,20 @@
 # include <cmath>
 # include <cstring>
 # include <string>
-# include <time>
+# include <ctime>
+
 
 using namespace std;
 
-bool shoot(basketBallPlayer);
-void pass(basketBallPlayer, basketBallPlayer);
-void seePlayerStats(basketBallPlayer);
-void seeScore(unsigned int remainingPossessions, unsigned int score1, unsigned int score2);
+// bool shoot(basketBallPlayer);
+// void pass(basketBallPlayer, basketBallPlayer);
+// void seePlayerStats(basketBallPlayer);
+// void seeScore();
 
 int score = 0;
 int totalPossessions = 0;
 
 class basketBallPlayer {
-	unsigned int teamNum;
 	unsigned int shotsTaken = 0;
 	unsigned int shotsMade = 0;
 	unsigned int passesAttempted = 0;
@@ -25,6 +25,7 @@ class basketBallPlayer {
 	bool possession = false;
 public:
 	string name;
+	unsigned int teamNum;
 	bool getPossession();
 	int getShotsTaken();
 	int getShotsMade();
@@ -37,25 +38,30 @@ public:
 	double findPassPercent();
 };
 
+#pragma region Getters
 bool basketBallPlayer::getPossession() {
 	return possession;
 }
 
-bool basketBallPlayer::getShotsTaken() {
+int basketBallPlayer::getShotsTaken() {
 	return shotsTaken;
 }
 
-bool basketBallPlayer::getShotsMade() {
-	return shotsTaken;
+int basketBallPlayer::getShotsMade() {
+	return shotsMade;
 }
 
-bool basketBallPlayer::getPassesAttempted() {
+int basketBallPlayer::getPassesAttempted() {
 	return passesAttempted;
 }
 
-bool basketBallPlayer::getPassesMade() {
+int basketBallPlayer::getPassesMade() {
 	return passesMade;
 }
+
+
+
+#pragma endregion 
 
 void basketBallPlayer::setPossession(bool pos) {
 	possession = pos;
@@ -75,32 +81,40 @@ bool basketBallPlayer::passBall() {
 	}
 }
 
-int basketBallPlayer::TakeShot(unsigned int points) {
+int basketBallPlayer::takeShot(unsigned int points) {
+	//Refer page 1 description
 	srand(time(NULL));
-	int randomNum;
+	int randomNum = 150;
 	int newPointVal;
+
 	if (points == 1) {
 		randomNum = rand() % 80 + 1;
+
 	}
 	else if (points == 2) {
 		randomNum = rand() % 100 + 1;
+
 	}
 	else if (points == 3) {
-		randNum = rand() % 120 + 1;
+		randomNum = rand() % 120 + 1;
+
 	}
 	else {
 		cout << "Please enter a valid point value: ";
 		cin >> newPointVal;
 		cout << endl;
-		basketBallPlayer::TakeShot(newPointVal);
+		basketBallPlayer::takeShot(newPointVal);
 	}
 
-	if (findShotPercent() > randNum) {
+	if (findShotPercent() > randomNum) {
+
 		shotsMade++;
 		shotsTaken++;
 		return true;
+
 	}
 	else {
+
 		shotsTaken++;
 		return false;
 	}
@@ -112,7 +126,7 @@ double basketBallPlayer::findShotPercent() {
 		shotPercent = shotsMade / shotsTaken;
 	}
 	else if (shotsMade == shotsTaken && shotsMade > 0) {
-		shotPercent = abs((shotsMade / shotsTaken) - 25);
+		shotPercent = (shotsMade / shotsTaken) - 25;
 	}
 	else {
 		shotPercent = 60;
@@ -121,11 +135,12 @@ double basketBallPlayer::findShotPercent() {
 }
 
 double basketBallPlayer::findPassPercent() {
+	double passPercent = 0;
 	if (passesMade > 1) {
 		passPercent = passesMade / passesAttempted;
 	}
 	else if (passesMade == passesAttempted && passesMade > 0) {
-		passPercent = abs((passesMade / passesAttempted) - 25);
+		passPercent = (passesMade / passesAttempted) - 25;
 	}
 	else {
 		passPercent = 60;
@@ -133,19 +148,18 @@ double basketBallPlayer::findPassPercent() {
 	return passPercent;
 }
 
-bool shoot(basketBallPlayer* player) {	
-	// Returns posession of the ball
+bool shoot(basketBallPlayer player) {	// Returns posession of the ball
 	//True - Current team retains posssesion
 	//False - Ball passed to other team
+	int points;
 	do {
-		int points;
 		cout << "Select number of points (1, 2 or 3): ";
 		cin >> points;
 	} while (points < 1 || points > 3);
 
-	if (!player.TakeShot() && rand() % 2 == 1) {
-		player->setPossession(false);
-		if (player.teamNum = 1) {
+	if (!player.takeShot(points) && rand() % 2 == 1) {
+		player.setPossession(false);
+		if (player.teamNum == 1) {
 			totalPossessions++;
 		}
 		return false;
@@ -156,15 +170,12 @@ bool shoot(basketBallPlayer* player) {
 }
 
 void pass(basketBallPlayer* player1, basketBallPlayer* player2) {
-	// player1 passes ball
-	// player2 receives ball
-	if player1.passBall() {
-		player2->setPossession(true);
-	}
-	player1->setPossession(false)
+
+
 }
 
 void seePlayerStats(basketBallPlayer player) {
+	//Refer page 2 description
 	cout << "Name: " << player.name << endl;
 	cout << "Shots taken: " << player.getShotsTaken() << endl;
 	cout << "Shots made: " << player.getShotsMade() << endl;
@@ -172,10 +183,57 @@ void seePlayerStats(basketBallPlayer player) {
 	cout << "Passes made: " << player.getPassesMade() << endl;
 }
 
-void seeScore(unsigned int remainingPossessions, unsigned int score1, unsigned int score2) {
-	int remainingPossessions, score;
-	cout << "Possesions remaining: " << remainingPossessions << "/20" <<endl;
-	cout << "Current score: " << score1 << ":" << score2 << endl;
+void seeScore() {
+	//Refer page 2 description
+}
+
+string trimString(string input) {
+	
+	string output;
+
+	int i = 0;
+	for (char c : input) {
+		if (!isspace(c)) {
+			i++;	
+		}
+	}
+
+	output = input.substr(i, input.length() - i);
+
+	return output;
+}
+
+int turnMenu() {
+	string response;
+	cout << "Your Turn! " << endl;
+	cout << "			Pick One:			" << endl;
+	cout << "-------------------------------" << endl;
+	cout << "	1. Pass" << endl;
+	cout << "	2. Shoot" << endl;
+	cout << "	3. See Player's Stats" << endl;
+	cout << "	4. See Score " << endl;
+	cout << "-------------------------------" << endl;
+	cout << "  Type in your response: ";
+	cin >> response;
+	cout << endl;
+
+	if (trimString(response) == "1" || trimString(response) == "Pass") {
+		return 1;
+	}
+	else if (trimString(response) == "2" || trimString(response) == "Shoot") {
+		return 2;
+	}
+	else if (trimString(response) == "3" || trimString(response) == "See Player's Stats") {
+		return 3;
+	}
+	else if (trimString(response) == "4" || trimString(response) == "See Score") {
+		return 4;
+	}
+	else {
+		cout << "Please enter a valid response" << endl;
+		return turnMenu();
+	}
+
 }
 
 int main() {
@@ -183,8 +241,12 @@ int main() {
 	basketBallPlayer Team1[5];
 	basketBallPlayer Team2[5];
 
-	int score1 = 0, score2 = 0;
-	int possessionsRemainig = 20;
+	int scoreLimit;
+	int response;
+
+	cout << "Please enter a score limit: ";
+	cin >> scoreLimit;
+	cout << endl;
 
 	string teamNameUser;
 	cout << "Please enter a team name: ";
@@ -192,7 +254,7 @@ int main() {
 	cout << endl;
 
 	string playerName;
-	Team1[0].name = "Kobe Bryant"
+	Team1[0].name = "Kobe Bryant";
 
 		for (int i = 1; i < 5; i++) {
 
@@ -208,12 +270,53 @@ int main() {
 	}
 	cout << endl;
 
+	srand(time(NULL));
+	bool coinFlip = rand() % 2 + 1;
+	
+	basketBallPlayer* Offense;
 
+	int teamNumber;
+
+	if (coinFlip = 1) {
+		Offense = Team1;
+		teamNumber = 1;
+	}
+	else {
+		Offense = Team2;
+		teamNumber = 2;
+	}
 
 	while (totalPossessions <= 20) {	// change to total possession <= 20
 
-	  // game play
+		response = turnMenu();
+		
+		switch (response) {
+			case 1: 
+				// Call Pass
+				break;
+			case 2:
+				// Call Shoot
+				break;
+			case 3:
+				// Call Player's Stats
+				break;
+			case 4:
+				// Call See Score
+				break;
+			default:
+				break;
+		}
 
+		if (Offense->getPossession == false) {
+			if (teamNumber == 1) {
+				Offense = Team2;
+			}
+			else if (teamNumber == 2) {
+				Offense = Team1;
+			}
+		}
+
+		
 
 	}
 
