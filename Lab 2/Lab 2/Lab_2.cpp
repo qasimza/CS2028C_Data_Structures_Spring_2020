@@ -231,10 +231,10 @@ bool pass(BasketBallPlayer* userTeam, BasketBallPlayer* computerTeam) {
 	cout << "Enter pass player number (1 - 5) exluding " << passer;
 	cin >> receiver;
 	while (receiver < 1 || receiver > 5 || passer == receiver) {
-		cout << "ERROR: Incorrect Player Selection. Enter pass player number (1 - 5) exluding " << passer;
+		cout << "ERROR: Incorrect Player Selection. Enter pass player number (1 - 5) exluding " << passer+1 << ": ";
 		cin >> receiver;
 	}
-	
+	receiver -= 1;
 	if (userTeam[passer].passBall()) {
 		cout << userTeam[passer].getName() << " passed the ball to " << userTeam[receiver].getName() << endl;
 		userTeam[passer].setPossession(false);
@@ -246,14 +246,14 @@ bool pass(BasketBallPlayer* userTeam, BasketBallPlayer* computerTeam) {
 		userTeam[passer].setPossession(false);
 		int randPlayerNum = rand() % 5;
 		computerTeam[randPlayerNum].setPossession(true);
-		cout << "Computer Team's player " << computerTeam[randPlayerNum].getName() << "now has the ball." << endl;
+		cout << "Computer Team's player " << computerTeam[randPlayerNum].getName() << " now has the ball." << endl;
 		return false;
 	}
 }
 
 void seePlayerStats(BasketBallPlayer* team) {
 	cout << THICK_LINE_SEPARATOR << endl;
-	cout << "ALL PLAYER STATS FOR TEAM: " << team[0].getTeamName() << endl;
+	cout << "ALL PLAYER'S STATS FOR TEAM: " << team[0].getTeamName() << endl;
 	cout << THICK_LINE_SEPARATOR << endl;
 	cout << left << setw(20) << "Player Name";
 	cout << left << setw(13) << "Shots Taken";
@@ -294,6 +294,8 @@ int turnMenu() {
 	cout << "	2. Shoot" << endl;
 	cout << "	3. See Player's Stats" << endl;
 	cout << "	4. See Score " << endl;
+	cout << "	5.  " << endl;
+	cout << "	6. See Current Player's Stats " << endl;
 	cout << THIN_LINE_SEPERATOR << endl;
 	cout << "  Type in your response: ";
 	cin >> response;
@@ -398,7 +400,8 @@ int main() {
 				cout << THICK_LINE_SEPARATOR << endl;
 				cout << "ATTEMPTING TO SHOOT BASKET" << endl;
 				cout << THICK_LINE_SEPARATOR << endl;
-				if (shoot(userScore, userTeam, computerTeam) == 0 || getPossessor(userTeam) == -1) {
+				shoot(userScore, userTeam, computerTeam);
+				if (getPossessor(userTeam) == -1) { //If rebound is not secured
 					userPossessions += 1;
 				}
 				break;
@@ -413,6 +416,7 @@ int main() {
 			}
 		
 		}
+		seeScore(userScore, computerScore, userPossessions, computerPossessions);
 	}
 
 	if (userScore > computerScore) {
