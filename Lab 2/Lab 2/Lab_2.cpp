@@ -228,7 +228,7 @@ int shoot(int &userScore, BasketBallPlayer* userTeam, BasketBallPlayer* computer
 bool pass(BasketBallPlayer* userTeam, BasketBallPlayer* computerTeam) {
 	int passer = getPossessor(userTeam);
 	int receiver;
-	cout << "Enter pass player number (1 - 5) exluding " << passer;
+	cout << "Enter pass player number (1 - 5) exluding " << passer << ": ";
 	cin >> receiver;
 	while (receiver < 1 || receiver > 5 || passer == receiver) {
 		cout << "ERROR: Incorrect Player Selection. Enter pass player number (1 - 5) exluding " << passer+1 << ": ";
@@ -292,16 +292,15 @@ int turnMenu() {
 	cout << THIN_LINE_SEPERATOR << endl;
 	cout << "	1. Pass" << endl;
 	cout << "	2. Shoot" << endl;
-	cout << "	3. See Player's Stats" << endl;
+	cout << "	3. See Your Players' Stats" << endl;
 	cout << "	4. See Score " << endl;
-	cout << "	5.  " << endl;
-	cout << "	6. See Current Player's Stats " << endl;
+	cout << "	5. See Computer Players' Stats" << endl;
 	cout << THIN_LINE_SEPERATOR << endl;
 	cout << "  Type in your response: ";
 	cin >> response;
 	cout << THIN_LINE_SEPERATOR << endl;
 	cout << endl;
-	while  (response < 1 || response > 4) {
+	while  (response < 1 || response > 5) {
 		cout << "ERROR: Invalid response. Select correct option from menu above: ";
 		cin >> response;
 		cout << endl;
@@ -410,6 +409,9 @@ int main() {
 				break;
 			case 4:
 				seeScore(userScore, computerScore, userPossessions, computerPossessions);
+				break;
+			case 5:
+				seePlayerStats(computerTeam);
 				break;
 			default:
 				cout << "WHY? HOW?" << endl;
