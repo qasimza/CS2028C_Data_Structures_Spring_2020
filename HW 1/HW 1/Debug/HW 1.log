@@ -1,0 +1,10 @@
+﻿  Source.cpp
+c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\hw 1\hw 1\source.cpp(33): error C3867: 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::size': non-standard syntax; use '&' to create a pointer to member
+c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\hw 1\hw 1\source.cpp(33): error C2446: '<': no conversion from 'unsigned int (__thiscall std::basic_string<char,std::char_traits<char>,std::allocator<char>>::* )(void) noexcept const' to 'int'
+  c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\hw 1\hw 1\source.cpp(33): note: There is no context in which this conversion is possible
+c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\hw 1\hw 1\source.cpp(35): error C3867: 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::size': non-standard syntax; use '&' to create a pointer to member
+c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\hw 1\hw 1\source.cpp(35): error C2296: '-': illegal, left operand has type 'unsigned int (__thiscall std::basic_string<char,std::char_traits<char>,std::allocator<char>>::* )(void) noexcept const'
+c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\hw 1\hw 1\source.cpp(45): error C3867: 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::size': non-standard syntax; use '&' to create a pointer to member
+c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\hw 1\hw 1\source.cpp(45): error C2446: '<': no conversion from 'unsigned int (__thiscall std::basic_string<char,std::char_traits<char>,std::allocator<char>>::* )(void) noexcept const' to 'int'
+  c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\hw 1\hw 1\source.cpp(45): note: There is no context in which this conversion is possible
+c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\hw 1\hw 1\source.cpp(136): error C2276: '!': illegal operation on bound member function expression
