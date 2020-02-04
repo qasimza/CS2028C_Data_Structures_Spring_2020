@@ -118,8 +118,12 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\..\..\..\..\OneDrive - University of Cincinnati\Spring 2020\CS 2028C\Week 2\Homework 1\MobyDick.txt" />
-    <Text Include="..\..\..\..\..\..\OneDrive - University of Cincinnati\Spring 2020\CS 2028C\Week 2\Homework 1\PeterPan.txt" />
+    <Text Include="MobyDick.txt" />
+    <Text Include="PeterPan.txt" />
+    <Text Include="Test1.txt" />
+    <Text Include="Test2.txt" />
+    <Text Include="Test3.txt" />
+    <Text Include="Test4.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -20,7 +20,23 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\..\..\..\..\OneDrive - University of Cincinnati\Spring 2020\CS 2028C\Week 2\Homework 1\MobyDick.txt" />
-    <Text Include="..\..\..\..\..\..\OneDrive - University of Cincinnati\Spring 2020\CS 2028C\Week 2\Homework 1\PeterPan.txt" />
+    <Text Include="MobyDick.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="PeterPan.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="Test1.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="Test2.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="Test3.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="Test4.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
