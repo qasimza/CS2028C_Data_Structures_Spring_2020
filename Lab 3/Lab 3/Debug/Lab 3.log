@@ -1,0 +1,6 @@
+﻿  test.cpp
+c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\lab 3\lab 3\test.cpp(72): warning C4101: 'y2': unreferenced local variable
+c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\lab 3\lab 3\test.cpp(72): warning C4101: 'y1': unreferenced local variable
+c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\lab 3\lab 3\test.cpp(72): warning C4101: 'x1': unreferenced local variable
+c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\lab 3\lab 3\test.cpp(72): warning C4101: 'x2': unreferenced local variable
+  Lab 3.vcxproj -> C:\Users\Zaina\source\repos\qasimza\CS2028C_Data_Structures_Spring_2020\Lab 3\Debug\Lab 3.exe

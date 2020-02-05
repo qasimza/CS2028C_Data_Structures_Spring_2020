@@ -14,13 +14,15 @@ complexNum::complexNum() {
 complexNum::complexNum(double xCoordinate, double yCoordinate) {
 	x = xCoordinate;
 	y = yCoordinate;
+	r = sqrt(pow(x, 2) + pow(y, 2));
+	theta = atan(y / x); //in radians
 }
 
-complexNum::complexNum(double xCoordinate, double yCoordinate, bool arbitrary) {
-	x = xCoordinate;
-	y = yCoordinate;
-	r = sqrt(pow(x,2)+pow(y,2));
-	theta = atan(y / x); //in radians
+complexNum::complexNum(double radius, double angle, bool arbitrary) {
+	r = radius;
+	theta = angle;
+	x = r * sin(angle);
+	y = r * cos(angle);
 }
 
 double complexNum::getXCoordinate() {
@@ -58,27 +60,36 @@ void complexNum::setAngle(double angle) {
 void complexNum::add(complexNum z) {
 	x = x + z.getXCoordinate();
 	y = y + z.getYCoordinate();
+	r = sqrt(pow(x,2) + pow(y,2));
+	theta = atan(y / x);
 }
 
 void complexNum::subtract(complexNum z) {
 	x = x - z.getXCoordinate();
 	y = y - z.getYCoordinate();
+	r = sqrt(pow(x, 2) + pow(y, 2));
+	theta = atan(y / x);
 }
 
 void complexNum::multiply(double scalar) {
 	x = x * scalar;
 	y = y * scalar;
+	r = sqrt(pow(x, 2) + pow(y, 2));
+	theta = atan(y / x);
 }
 
 void complexNum::divide(double scalar) {
 	x = x / scalar;
 	y = y / scalar;
+	r = sqrt(pow(x, 2) + pow(y, 2));
+	theta = atan(y / x);
 }
 
 void complexNum::print() {
 	cout << "Cartesian Coordinates: " << endl;
 	cout << "X-coordinate: " << x << endl;
 	cout << "Y-coordinate: " << y << endl;
+	cout << "Polar Coordinates: " << endl;
 	cout << "Radius: " << r << endl;
 	cout << "Angle(in radians): " << theta << endl;
 }
