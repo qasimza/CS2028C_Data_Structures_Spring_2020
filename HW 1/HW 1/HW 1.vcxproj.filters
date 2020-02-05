@@ -19,24 +19,4 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="MobyDick.txt">
-      <Filter>Source Files</Filter>
-    </Text>
-    <Text Include="PeterPan.txt">
-      <Filter>Source Files</Filter>
-    </Text>
-    <Text Include="Test1.txt">
-      <Filter>Source Files</Filter>
-    </Text>
-    <Text Include="Test2.txt">
-      <Filter>Source Files</Filter>
-    </Text>
-    <Text Include="Test3.txt">
-      <Filter>Source Files</Filter>
-    </Text>
-    <Text Include="Test4.txt">
-      <Filter>Source Files</Filter>
-    </Text>
-  </ItemGroup>
 </Project>

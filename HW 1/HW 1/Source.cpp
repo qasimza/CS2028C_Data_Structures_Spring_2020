@@ -1,7 +1,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
-
+#include <sstream>
 using namespace std;
 
 struct Book {
@@ -30,16 +30,11 @@ Book::Book() {
 
 //this function calculates the number of words there are in the file
 void Book::calculateWordCount(string bookText) {
-	if (bookText.length() > 0) {
+	stringstream textStream(bookText);
+	string word;
+	while (textStream >> word) {
 		wordCount++;
-	}
-	for (int i = 0; i < bookText.length(); i++) {
-		if (int(bookText[i]) == char(32)) {
-			if (i != bookText.length() - 1 && int(bookText[i + 1]) != char(32)){
-				wordCount++;
-			}
 		}
-	}
 }
 
 //this function calculates the frequency of each letter in the file
@@ -84,7 +79,8 @@ bool getQuitFlag() {
 	}
 }
 
-void saveBook(Book book) {
+
+void saveBook(Book book, bool freqFlag) {
 	fstream outFile;
 	outFile.open("CardCatalog.txt", ios::app);
 	cout << "Saving data to file: CardCatalog.txt" << endl;
@@ -96,6 +92,17 @@ void saveBook(Book book) {
 	outFile << "Author Last Name: " + lastName + "\n";
 	outFile << "Word count: " + to_string(book.wordCount) + "\n";
 	outFile << "Line Count: " + to_string(book.lineCount) + "\n";
+	
+	if (freqFlag == true) {
+		outFile << book.title + " letter frequency: \n";
+		int letterCount = 0, i;
+		for (i = 0; i < 26; i++) {
+			letterCount += book.letterFrequency[i];
+		}
+		for (int i = 0; i < 26; i++) {
+			outFile << char(i + 97) << ": " << double(book.letterFrequency[i]) * 100 / double(letterCount) << "%" << endl;
+		}
+	}
 	outFile << "\n";
 	outFile.close();
 }
@@ -105,11 +112,12 @@ int main() {
 	string fileName;
 	string contentsString;
 	string seeFrequencyflag;
+	string saveFrequencyflag;
 	string lineString;
-	int length = 0;
-	bool contentsFlag = false;
+	bool contentsFlag;
 
 	do {
+		contentsFlag = false;
 
 		cout << "Provide file name for processing: ";
 		cin >> fileName;
@@ -155,26 +163,43 @@ int main() {
 			else if (lineString.find("Contents:") != string::npos) {
 				contentsFlag = true;
 			}
-			else {
-				cout << "Blank line before contents section (omitted for calculation) " << lineString << endl;
-			}
 		}
 
-		//Saving book to CardCatalog.txt
-		saveBook(bookObj);
 
-		cout << "Do you wish to see the letter frequency (y/n): ";
+		//Displaying letter frequency
+		cout << "Do you wish to see the letter frequency? (y/n): ";
 		cin >> seeFrequencyflag;
 		cout << endl;
+
 		while (seeFrequencyflag != "y" && seeFrequencyflag != "n") {
 			cout << "ERROR: Incorrect selection. Press y for yes/n for no: ";
 			cin >> seeFrequencyflag;
 			cout << endl;
 		}
+
 		if (seeFrequencyflag == "y") {
+			cout << bookObj.title << " letter frequency: " << endl;
 			bookObj.displayLetterFrequency();
 		}
-	
+
+		//Saving letter frequency
+		cout << "Do you wish to save the letter frequency to CardCatalog.txt? (y/n): ";
+		cin >> saveFrequencyflag;
+		cout << endl;
+
+		while (saveFrequencyflag != "y" && saveFrequencyflag != "n") {
+			cout << "ERROR: Incorrect selection. Press y for yes/n for no: ";
+			cin >> saveFrequencyflag;
+			cout << endl;
+		}
+
+		//Saving book to CardCatalog.txt
+		if (saveFrequencyflag == "y")
+			saveBook(bookObj, true);
+		else
+			saveBook(bookObj, false);
+
+		//closing istream object
 		bookFile.close();
 	} while (!getQuitFlag());
 
