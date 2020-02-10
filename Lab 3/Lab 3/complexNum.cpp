@@ -85,6 +85,15 @@ void complexNum::divide(double scalar) {
 	theta = atan(y / x);
 }
 
+bool complexNum::equals(complexNum z) {
+	if (x == z.getXCoordinate() && y == z.getYCoordinate()) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
 void complexNum::print() {
 	cout << "Cartesian Coordinates: " << endl;
 	cout << "X-coordinate: " << x << endl;

@@ -28,6 +28,7 @@ public:
 	void subtract(complexNum);
 	void multiply(double);
 	void divide(double);
+	bool equals(complexNum);
 	//Display
 	void print();
 };
