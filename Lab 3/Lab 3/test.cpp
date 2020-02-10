@@ -40,7 +40,7 @@ complexNumExtended inputComplexNum() {
 	cin >> selection;
 	cout << endl;
 	while (selection != 1 && selection != 2) {
-		cout << "ERROR: Incorrect input";
+		cout << "ERROR: Incorrect input Valid selections (1-2): ";
 		cin >> selection;
 		cout << endl;
 	}

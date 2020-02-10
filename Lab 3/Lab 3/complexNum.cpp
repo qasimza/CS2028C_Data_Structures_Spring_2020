@@ -95,6 +95,7 @@ bool complexNum::equals(complexNum z) {
 }
 
 void complexNum::print() {
+	cout << endl;
 	cout << "Cartesian Coordinates: " << endl;
 	cout << "X-coordinate: " << x << endl;
 	cout << "Y-coordinate: " << y << endl;
