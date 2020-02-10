@@ -1,0 +1,6 @@
+﻿  Movie.cpp
+  TVShow.cpp
+c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\lab 4\lab 4\tvshow.cpp(4): error C2511: 'TVShow::TVShow(int,int)': overloaded member function not found in 'TVShow'
+  c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\lab 4\lab 4\tvshow.h(4): note: see declaration of 'TVShow'
+c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\lab 4\lab 4\tvshow.cpp(7): error C2059: syntax error: 'public'
+  Generating Code...
