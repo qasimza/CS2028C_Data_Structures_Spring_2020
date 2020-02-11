@@ -1,20 +1,20 @@
 #pragma once
 #include "Show.h"
 
-class Movie : public Show{
-	
+class Movie : public Show {
+
 	string * credits;
 
 public:
 	// Constructors
 	Movie();
-	Movie(string, string, string, int, int);
+	Movie(string, string, string, int, string *);
 
 	// Getters
-	string getCredits();
+	string * getCredits();
 
 	// Settters
-	void setCredits();
+	void setCredits(string *);
 
 	// Other Functions
 	void play();

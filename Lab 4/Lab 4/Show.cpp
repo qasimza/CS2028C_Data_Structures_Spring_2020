@@ -1,6 +1,8 @@
 #include "Show.h"
 
+
 //Default constructor
+
 Show::Show()
 {
 	title = "undefined";
@@ -9,7 +11,9 @@ Show::Show()
 	year = -1;
 }
 
+
 // Parameterized constructor
+
 Show::Show(string showTitle, string showDescription, string showDirector, int showYear)
 {
 	title = showTitle;
@@ -19,6 +23,7 @@ Show::Show(string showTitle, string showDescription, string showDirector, int sh
 }
 
 //Getters 
+
 string Show::getTitle() {
 	return title;
 }
@@ -33,7 +38,9 @@ int Show::getYear() {
 	return year;
 }
 
+
 //Setters
+
 void Show::setTitle(string showTitle) {
 	title = showTitle;
 }
@@ -50,7 +57,9 @@ void Show::setYear(int showYear) {
 	year = showYear;
 }
 
-//Other 
+
+//Other function
+
 void Show::play() {
 }
 

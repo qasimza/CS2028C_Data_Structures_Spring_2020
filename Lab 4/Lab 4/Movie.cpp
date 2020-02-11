@@ -1,34 +1,40 @@
 #include "Movie.h"
 
 
-//Constructors
+//Default Constructor
+
 Movie::Movie() :Show() {
-	credits;
+	credits = NULL;
 }
 
-Movie::Movie(string movieTitle, string movieDescription, string movieDirector, int movieYear, int numMovieCredits):Show(movieTitle, movieDescription, movieDirector, movieYear){
-	credits = new string[numMovieCredits];
+
+//Parameterized Constructor
+
+Movie::Movie(string movieTitle, string movieDescription, string movieDirector, int movieYear, string * creditsPtr):Show(movieTitle, movieDescription, movieDirector, movieYear){
+	credits = creditsPtr;
 }
+
 
 //Getters
-string Movie::getCredits() {
-	return *credits;
+
+string * Movie::getCredits() {
+	return credits;
 }
-//
-//void Movie::setCredits(string movieCredits[]) {
-//	credits[] = movieCredits[]
-//}
-//
-////Setters
-//
-//
-//
-//void Movie::play() {
-//
-//	for (int i = 0; i < credits.length; i++) {
-//		cout << credits[i] << endl;
-//	}
-//
-//}
-//
-//
+
+
+//Setter
+
+void Movie::setCredits(string * ptr) {
+	credits = ptr;
+}
+
+
+//Other functions
+
+void Movie::play() {
+	for (int i; i < (&credits->length); i++) {
+		cout << &credits[i] << endl;
+	}
+}
+
+//Detils does not need to be overloaded
