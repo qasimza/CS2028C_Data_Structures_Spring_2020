@@ -4,47 +4,138 @@
 //Default Constructor
 
 TVShow::TVShow():Show() {
-	episodeList = NULL;
+	numSeasons = 0;
+	numEpisodes = 0;
+	episodeList[0][0] = "None";
 }
 
 
 //Parameterized Constructor
 
-TVShow::TVShow(string tvTitle, string tvDescription, string tvDirector, int tvYear, string **tvPtr):Show(tvTitle, tvDescription, tvDirector, tvYear) {
-	episodeList = tvPtr;
+TVShow::TVShow(string tvTitle, string tvDescription, string tvDirector, int tvYear, string tvPtr[MAX_SEASONS][MAX_EPISODES], int tvSeasons, int tvEpisodes):Show(tvTitle, tvDescription, tvDirector, tvYear) {
+	if (tvSeasons > MAX_SEASONS) {
+		numSeasons = MAX_SEASONS;
+	}
+	else if (tvSeasons < 0) {
+		numSeasons = 0;
+	}
+	else {
+		numSeasons = tvSeasons;
+	}
+	if (tvEpisodes > MAX_EPISODES) {
+		numEpisodes = MAX_EPISODES;
+	}
+	else if (tvEpisodes < 0) {
+		numEpisodes = 0;
+	}
+	else {
+		numEpisodes = tvEpisodes;
+	}
+
+	for (int i = 0; i < numSeasons; i++) {
+		for (int j = 0; j < numEpisodes; j++) {
+			episodeList[i][j] = tvPtr[i][j];
+		}
+	}
 }
 
 
-//Getter
+//Getters
 
-string ** TVShow::getEpisodeList() {
-	return episodeList;
+string * TVShow::getEpisodeList() {
+	string *ptr;
+	ptr = &episodeList[0][0];
+	return ptr;
 }
 
 
-//Setter
+int TVShow::getNumSeasons() {
+	return numSeasons;
+}
 
-void TVShow::setEpisodeList(string ** tvPtr) {
-	episodeList = tvPtr;
+int TVShow::getNumEpisodes() {
+	return numEpisodes;
+}
+
+
+//Setters
+
+void TVShow::setEpisodeList(string tvPtr[MAX_SEASONS][MAX_EPISODES], int tvSeasons, int tvEpisodes) {
+	if (tvSeasons > MAX_SEASONS) {
+		numSeasons = MAX_SEASONS;
+	}
+	else if (tvSeasons < 0) {
+		numSeasons = 0;
+	}
+	else {
+		numSeasons = tvSeasons;
+	}
+	if (tvEpisodes > MAX_EPISODES) {
+		numEpisodes = MAX_EPISODES;
+	}
+	else if (tvEpisodes < 0) {
+		numEpisodes = 0;
+	}
+	else {
+		numEpisodes = tvEpisodes;
+	}
+
+	for (int i = 0; i < numSeasons; i++) {
+		for (int j = 0; j < numEpisodes; j++) {
+			episodeList[i][j] = tvPtr[i][j];
+		}
+	}
+}
+
+
+void TVShow::setNumSeasons(int tvSeasons) {
+	if (tvSeasons > MAX_SEASONS) {
+		numSeasons = MAX_SEASONS;
+	}
+	else if (tvSeasons < 0) {
+		numSeasons = 0;
+	}
+	else {
+		numSeasons = tvSeasons;
+	}
+}
+
+void TVShow::setNumEpisodes(int tvEpisodes) {
+	if (tvEpisodes > MAX_EPISODES) {
+		numEpisodes = MAX_EPISODES;
+	}
+	else if (tvEpisodes < 0) {
+		numEpisodes = 0;
+	}
+	else {
+		numEpisodes = tvEpisodes;
+	}
 }
 
 
 //Other functions
 
 void TVShow::play() {
-	unsigned int seasonNum; 
-	cout << "Enter the season number: ";
-	cin >> seasonNum;
-	cout << endl;
-	while (seasonNum < 1 || seasonNum > sizeof(&episodeList) / sizeof(&episodeList[0])) {
-		cout << "Season does not exist. This series has " << sizeof(&episodeList) / sizeof(&episodeList[0]) << " season(s)." << endl;
-		cout << "Enter the season number: ";
-		cin >> seasonNum;
-		cout << endl;
+	if (numSeasons == 0) {
+		cout << "No seasons or episodes to display. " << endl;
 	}
-	cout << "Season: " << seasonNum;
-	for (int i = 0; i < sizeof(&episodeList[seasonNum]); i++) {
-		cout << "Episode " << i << ": " << &episodeList[seasonNum][i] << endl;
+	else if (numEpisodes == 0) {
+		cout << "Seasons exist, however no epiosdes defined. " << endl;
+	}
+	else {
+		int seasonSelection;
+		cout << "Enter season(1-" << numSeasons << "): ";
+		cin >> seasonSelection;
+		cout << endl;
+		while (seasonSelection < 1 || seasonSelection > numSeasons) {
+			cout << "ERROR: Season does not exist. Please select a season (1-" << numSeasons << "): ";
+			cin >> seasonSelection;
+			cout << endl;
+		}
+		cout << "Season " << seasonSelection << "Episode List: " << endl;
+		for (int i = 0; i < numEpisodes; i++) {
+			cout << "Episode " << i + 1 << ": " << episodeList[seasonSelection][i] << endl;
+		}
 	}
 }
 
@@ -53,6 +144,5 @@ void TVShow::details() {
 	cout << "Description: " << endl << getDescription() << endl;
 	cout << "Director: " + getDirector() << endl;
 	cout << "Release Year: " + getYear() << endl;
-	cout << "Number of seasons: " << sizeof(&episodeList) / sizeof(&episodeList[0]) << endl;
+	cout << "Number of seasons: " << numSeasons << endl;
 }
-

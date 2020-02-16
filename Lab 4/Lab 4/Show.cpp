@@ -1,13 +1,13 @@
 #include "Show.h"
-
+#include <sstream>
 
 //Default constructor
 
 Show::Show()
 {
-	title = "undefined";
-	description = "n/a";
-	director = "undefined";
+	title = "Undefined";
+	description = "N/A";
+	director = "Undefined";
 	year = -1;
 }
 
@@ -65,8 +65,23 @@ void Show::play() {
 
 
 void Show::details() {
-	cout << "Title:" << title << endl;
-	cout << "Description: " << endl << description << endl;
+	cout << "Title: " << title << endl;
+	cout << "Description: " << endl;
+	int counter = 0;
+	stringstream descriptionStream(description);
+	string word;
+	while (descriptionStream >> word) {
+		cout << word << " ";
+		counter++;
+		if (counter == 12) {
+			cout << endl;
+			counter = 0;
+		}
+	}
+	if (counter != 0) {
+		cout << endl;
+	}
 	cout << "Director: " + director << endl;
-	cout << "Release Year: " + year << endl;
+	cout << "Release Year: " << year << endl;
 }
+ 

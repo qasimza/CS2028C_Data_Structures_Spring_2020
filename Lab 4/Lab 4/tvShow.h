@@ -2,20 +2,27 @@
 #include "Show.h"
 
 class TVShow : public Show{
-	
-	string **episodeList;
+	const static int MAX_SEASONS = 12;
+	const static int MAX_EPISODES = 100;
+	int numSeasons;
+	int numEpisodes;
+	string episodeList[MAX_SEASONS][MAX_EPISODES];
 
 public:
 
 	//Constructors
 	TVShow();
-	TVShow(string, string, string, int, string **);
+	TVShow(string, string, string, int, string [MAX_SEASONS][MAX_EPISODES], int, int);
 
-	//Getter
-	string ** getEpisodeList();
+	//Getters
+	string * getEpisodeList();
+	int getNumSeasons();
+	int getNumEpisodes();
 
-	//Setter
-	void setEpisodeList(string **);
+	//Setters
+	void setEpisodeList(string[MAX_SEASONS][MAX_EPISODES], int, int);
+	void setNumSeasons(int);
+	void setNumEpisodes(int);
 
 	//Other functions
 	void play();

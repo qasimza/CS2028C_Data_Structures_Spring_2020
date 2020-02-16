@@ -30,7 +30,7 @@ public:
 	void setYear(int);
 
 	//Other Functions
-	virtual void play() = 0;
+	virtual void play();
 	void details();
 };
 
