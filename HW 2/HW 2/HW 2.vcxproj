@@ -115,6 +115,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="HardMode.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Wheel.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="HardMode.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Wheel.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
