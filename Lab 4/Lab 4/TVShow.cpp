@@ -132,7 +132,7 @@ void TVShow::play() {
 			cin >> seasonSelection;
 			cout << endl;
 		}
-		cout << "Season " << seasonSelection << "Episode List: " << endl;
+		cout << "Season " << seasonSelection << " Episode List: " << endl;
 		for (int i = 0; i < numEpisodes; i++) {
 			cout << "Episode " << i + 1 << ": " << episodeList[seasonSelection-1][i] << endl;
 		}

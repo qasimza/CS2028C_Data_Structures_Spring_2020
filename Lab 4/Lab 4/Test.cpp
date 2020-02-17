@@ -44,46 +44,48 @@ int main() {
 	int year, selection;
 	string title, description, director;
 	char pConstructorFlag;
-
+	string x;
 	do {
 		
 		selection = getMenuOption();
 		
 		if (selection != 6) {
+			getline(cin, title);
 			cout << "Use parameterized constructor? (Enter y for yes):";
 			cin >> pConstructorFlag;
+			getline(cin, x);
+
 			if (pConstructorFlag == 'y') {
 				cout << "Enter Title: ";
-				cin >> title;
-				cout << endl << "Enter Description: ";
-				cin >> description;
-				cout << endl << "Enter Director: ";
-				cin >> director;
-				cout << endl << "Enter Release Year: ";
+				getline(cin, title);
+				cout << "Enter Description: ";
+				getline(cin, description);
+				cout << "Enter Director: ";
+				getline(cin, director);
+				cout << "Enter Release Year: ";
 				cin >> year;
-				cout << endl;
 			}
 
 			//Show
 			if (selection == 1) {
 				if (pConstructorFlag == 'y') {
 					Show show(title, description, director, year);
-					cout << "Calling play and details fuction for Show object (Task 3.1.b):" << endl;
+					cout << endl << "Calling play and details fuction for Show object (Task 3.1.b):" << endl;
 					cout << "DETAILS: " << endl;
 					show.details();
 					cout << "PLAY: " << endl;
 					show.play();
-					cout << "Calling function outside class (Task 3.1.c):" << endl;
+					cout << endl << "Calling function outside class (Task 3.1.c):" << endl;
 					callFunctions(show);
 				}
 				else {
 					Show show;
-					cout << "Calling play and details fuction for Show object (Task 3.1.b):" << endl;
+					cout << endl << "Calling play and details fuction for Show object (Task 3.1.b):" << endl;
 					cout << "DETAILS: " << endl;
 					show.details();
 					cout << "PLAY: " << endl;
 					show.play();
-					cout << "Calling function outside class (Task 3.1.c): " << endl;
+					cout << endl << "Calling function outside class (Task 3.1.c): " << endl;
 					callFunctions(show);
 				}
 				
@@ -91,9 +93,10 @@ int main() {
 			//Movie
 			else if (selection == 2) {
 				if (pConstructorFlag == 'y') {
-					cout << "Enter number of credits (0-100)" << endl;
+					cout << "Enter number of credits (0-100): ";
 					int numCredits;
 					cin >> numCredits;
+					getline(cin, x);
 					if (numCredits < 0){
 						cout << "ERROR: Invalid number of credits. Setting number of credits to 0" << endl;
 						numCredits = 0;
@@ -106,33 +109,33 @@ int main() {
 					string credits[100];
 					ptr = &credits[0];
 					for (int i = 0; i < numCredits; i++) {
-						cout << "Enter credit " << i + 1 << ": " << endl;
-						cin >> credits[i];
+						cout << "Enter credit " << i + 1 << ": ";
+						getline(cin, credits[i]);
 					}
 					Movie movie(title, description, director, year, ptr, numCredits);
-					cout << "Calling play and details fuction for Movie object (Task 3.1.b):" << endl;
+					cout << endl << "Calling play and details fuction for Movie object (Task 3.1.b):" << endl;
 					cout << "DETAILS: " << endl;
-					movie.play();
-					cout << "PLAY: " << endl;
 					movie.details();
-					cout << "Calling function outside class (Task 3.1.c): " << endl;
+					cout << "PLAY: " << endl;
+					movie.play();
+					cout << endl << "Calling function outside class (Task 3.1.c):" << endl;
 					callFunctions(movie);
 				}
 				else {
 					Movie movie;
-					cout << "Calling play and details fuction for Movie object (Task 3.1.b):" << endl;
+					cout << endl << "Calling play and details fuction for Movie object (Task 3.1.b):" << endl;
 					cout << "DETAILS: " << endl;
-					movie.play();
-					cout << "PLAY: " << endl;
 					movie.details();
-					cout << "Calling function outside class (Task 3.1.c): " << endl;
+					cout << "PLAY: " << endl;
+					movie.play();
+					cout << endl << "Calling function outside class (Task 3.1.c):" << endl;
 					callFunctions(movie);
 				}
 			}
 			//TV Show
 			else if (selection == 3) {
 				if (pConstructorFlag == 'y') {
-					cout << "Enter number of seasons (0-20)" << endl;
+					cout << "Enter number of seasons (0-20): " << endl;
 					int numSeasons;
 					cin >> numSeasons;
 					if (numSeasons < 0) {
@@ -158,40 +161,41 @@ int main() {
 					if (numSeasons == 0) {
 						cout << "There are 0 seasons. Cannot accept episodes" << endl;
 					}
+
 					else {
+						getline(cin, x);
 						for (int i = 0; i < numSeasons; i++) {
 							cout << "Enter episodes for Season " << i + 1 << ": " << endl;
 							for (int j = 0; j < numEpisodes; j++) {
 								cout << "Enter episode " << j + 1 << ": ";
-								cin >> episodeList[i][j];
-								cout << endl;
+								getline(cin, episodeList[i][j]);
 							}
 						}
 					}
 					TVShow tvShow(title, description, director, year, episodeList, numSeasons, numEpisodes);
-					cout << "Calling play and details fuction for Movie object (Task 3.1.b):" << endl;
+					cout << endl << "Calling play and details fuction for Movie object (Task 3.1.b):" << endl;
 					cout << "DETAILS: " << endl;
-					tvShow.play();
-					cout << "PLAY: " << endl;
 					tvShow.details();
-					cout << "Calling function outside class (Task 3.1.c): " << endl;
+					cout << "PLAY: " << endl;
+					tvShow.play();
+					cout << endl << "Calling function outside class (Task 3.1.c): " << endl;
 					callFunctions(tvShow);
 				}
 				else {
 					TVShow tvShow;
-					cout << "Calling play and details fuction for TVShow object (Task 3.1.b):" << endl;
+					cout << endl << "Calling play and details fuction for TVShow object (Task 3.1.b):" << endl;
 					cout << "DETAILS: " << endl;
-					tvShow.play();
-					cout << "PLAY: " << endl;
 					tvShow.details();
-					cout << "Calling function outside class (Task 3.1.c): " << endl;
+					cout << "PLAY: " << endl;
+					tvShow.play();
+					cout << endl << "Calling function outside class (Task 3.1.c): " << endl;
 					callFunctions(tvShow);
 				}
 			}
 			//Moivie declared as Show
 			else if (selection == 4) {
 				if (pConstructorFlag == 'y') {
-					cout << "Enter number of credits (0-100)" << endl;
+					cout << "Enter number of credits (0-100): ";
 					int num_credits;
 					cin >> num_credits;
 					if (num_credits < 0) {
@@ -205,34 +209,35 @@ int main() {
 					string *ptr;
 					string credits[100];
 					ptr = &credits[0];
+					getline(cin, x);
 					for (int i = 0; i < num_credits; i++) {
-						cout << "Enter credit " << i + 1 << ": " << endl;
-						cin >> credits[i];
+						cout << "Enter credit: " << i + 1 << ": ";
+						getline(cin, credits[i]);
 					}
 					Show *movie = new Movie(title, description, director, year, ptr, num_credits);
-					cout << "Calling play and details fuction for Movie object (Task 3.1.b):" << endl;
+					cout << endl << "Calling play and details fuction for Movie object (Task 3.1.b):" << endl;
 					cout << "DETAILS: " << endl;
-					movie->play();
-					cout << "PLAY: " << endl;
 					movie->details();
-					cout << "Calling function outside class (Task 3.1.c): " << endl;
+					cout << "PLAY: " << endl;
+					movie->play();
+					cout << endl << "Calling function outside class (Task 3.1.c): " << endl;
 					callFunctions(*movie);
 				}
 				else {
 					Show *movie = new Movie;
-					cout << "Calling play and details fuction for Movie object declared as Show (Task 3.1.b):" << endl;
+					cout << endl << "Calling play and details fuction for Movie object declared as Show (Task 3.1.b):" << endl;
 					cout << "DETAILS: " << endl;
-					movie->play();
-					cout << "PLAY: " << endl;
 					movie->details();
-					cout << "Calling function outside class (Task 3.1.c): " << endl;
+					cout << "PLAY: " << endl;
+					movie->play();
+					cout << endl << "Calling function outside class (Task 3.1.c): " << endl;
 					callFunctions(*movie);
 				}
 			}
 			//TV Show Declared as show
 			else if (selection == 5) {
 				if (pConstructorFlag == 'y') {
-					cout << "Enter number of seasons (0-20)" << endl;
+					cout << "Enter number of seasons (0-20): ";
 					int numSeasons;
 					cin >> numSeasons;
 					if (numSeasons < 0) {
@@ -243,7 +248,7 @@ int main() {
 						cout << "ERROR: Invalid number of seasons. Setting number of seasons to 20 (max limit)" << endl;
 						numSeasons = 20;
 					}
-					cout << "Enter number of episodes (0-20)" << endl;
+					cout << "Enter number of episodes (0-20): ";
 					int numEpisodes;
 					cin >> numEpisodes;
 					if (numEpisodes < 0) {
@@ -259,33 +264,33 @@ int main() {
 						cout << "There are 0 seasons. Cannot accept episodes" << endl;
 					}
 					else {
+						getline(cin, x);
 						for (int i = 0; i < numSeasons; i++) {
 							cout << "Enter episodes for Season " << i + 1 << ": " << endl;
 							for (int j = 0; j < numEpisodes; j++) {
 								cout << "Enter episode " << j + 1 << ": ";
-								cin >> episodeList[i][j];
-								cout << endl;
+								getline(cin, episodeList[i][j]);
 							}
 						}
 					}
 					Show *tvShow = new TVShow(title, description, director, year, episodeList, numSeasons, numEpisodes);
-					cout << "Calling play and details fuction for Movie object (Task 3.1.b):" << endl;
+					cout << endl << "Calling play and details fuction for Movie object (Task 3.1.b):" << endl;
 					cout << "DETAILS: " << endl;
-					tvShow->play();
-					cout << "PLAY: " << endl;
 					tvShow->details();
-					cout << "Calling function outside class (Task 3.1.c): " << endl;
+					cout << "PLAY: " << endl;
+					tvShow->play();
+					cout << endl << "Calling function outside class (Task 3.1.c): " << endl;
 					callFunctions(*tvShow);
 
 				}
 				else {
 					Show *tvShow = new TVShow;
-					cout << "Calling play and details fuction for TVShow object declared as Show (Task 3.1.b):" << endl;
+					cout << endl << "Calling play and details fuction for TVShow object declared as Show (Task 3.1.b):" << endl;
 					cout << "DETAILS: " << endl;
-					tvShow->play();
-					cout << "PLAY: " << endl;
 					tvShow->details();
-					cout << "Calling function outside class (Task 3.1.c): " << endl;
+					cout << "PLAY: " << endl;
+					tvShow->play();
+					cout << endl << "Calling function outside class (Task 3.1.c): " << endl;
 					callFunctions(*tvShow);
 				}
 			}
@@ -297,6 +302,7 @@ int main() {
 		else {
 			cout << "You selected 6. Quitting program..." << endl;
 		}
+		cout << "\n--------------------------------------------------\n";
 	}while (selection!=6);
 	return 0;
 }
