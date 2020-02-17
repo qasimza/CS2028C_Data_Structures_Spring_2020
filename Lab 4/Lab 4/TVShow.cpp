@@ -1,5 +1,5 @@
 #include "TVShow.h"
-
+#include <sstream>
 
 //Default Constructor
 
@@ -134,15 +134,30 @@ void TVShow::play() {
 		}
 		cout << "Season " << seasonSelection << "Episode List: " << endl;
 		for (int i = 0; i < numEpisodes; i++) {
-			cout << "Episode " << i + 1 << ": " << episodeList[seasonSelection][i] << endl;
+			cout << "Episode " << i + 1 << ": " << episodeList[seasonSelection-1][i] << endl;
 		}
 	}
 }
 
 void TVShow::details() {
 	cout << "Title:" << getTitle() << endl;
-	cout << "Description: " << endl << getDescription() << endl;
-	cout << "Director: " + getDirector() << endl;
-	cout << "Release Year: " + getYear() << endl;
+	cout << "Description: " << endl;
+	string description = getDescription();
+	int counter = 0;
+	stringstream descriptionStream(description);
+	string word;
+	while (descriptionStream >> word) {
+		cout << word << " ";
+		counter++;
+		if (counter == 12) {
+			cout << endl;
+			counter = 0;
+		}
+	}
+	if (counter != 0) {
+		cout << endl;
+	}
+	cout << "Director: " << getDirector() << endl;
+	cout << "Release Year: " << getYear() << endl;
 	cout << "Number of seasons: " << numSeasons << endl;
 }

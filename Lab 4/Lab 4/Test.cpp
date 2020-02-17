@@ -45,9 +45,8 @@ int main() {
 	string title, description, director;
 	char pConstructorFlag;
 
-	TVShow tvShow;
-	
 	do {
+		
 		selection = getMenuOption();
 		
 		if (selection != 6) {
@@ -93,24 +92,24 @@ int main() {
 			else if (selection == 2) {
 				if (pConstructorFlag == 'y') {
 					cout << "Enter number of credits (0-100)" << endl;
-					int num_credits;
-					cin >> num_credits;
-					if (num_credits < 0){
+					int numCredits;
+					cin >> numCredits;
+					if (numCredits < 0){
 						cout << "ERROR: Invalid number of credits. Setting number of credits to 0" << endl;
-						num_credits = 0;
+						numCredits = 0;
 					}
-					else if (num_credits > 100) {
+					else if (numCredits > 100) {
 						cout << "ERROR: Invalid number of credits. Setting number of credits to 100 (max limit)" << endl;
-						num_credits = 100;
+						numCredits = 100;
 					}
 					string *ptr;
 					string credits[100];
 					ptr = &credits[0];
-					for (int i = 0; i < num_credits; i++) {
-						cout << "Enter credit " << i + 1 << " :" << endl;
+					for (int i = 0; i < numCredits; i++) {
+						cout << "Enter credit " << i + 1 << ": " << endl;
 						cin >> credits[i];
 					}
-					Movie movie(title, description, director, year, ptr, num_credits);
+					Movie movie(title, description, director, year, ptr, numCredits);
 					cout << "Calling play and details fuction for Movie object (Task 3.1.b):" << endl;
 					cout << "DETAILS: " << endl;
 					movie.play();
@@ -133,7 +132,50 @@ int main() {
 			//TV Show
 			else if (selection == 3) {
 				if (pConstructorFlag == 'y') {
-
+					cout << "Enter number of seasons (0-20)" << endl;
+					int numSeasons;
+					cin >> numSeasons;
+					if (numSeasons < 0) {
+						cout << "ERROR: Invalid number of seasons. Setting number of seasons to 0" << endl;
+						numSeasons = 0;
+					}
+					else if (numSeasons > 20) {
+						cout << "ERROR: Invalid number of seasons. Setting number of seasons to 20 (max limit)" << endl;
+						numSeasons = 20;
+					}
+					cout << "Enter number of episodes (0-20)" << endl;
+					int numEpisodes;
+					cin >> numEpisodes;
+					if (numEpisodes < 0) {
+						cout << "ERROR: Invalid number of episodes. Setting number of episodes to 0" << endl;
+						numEpisodes = 0;
+					}
+					else if (numEpisodes > 100) {
+						cout << "ERROR: Invalid number of episodes. Setting number of episodes to 100 (max limit)" << endl;
+						numEpisodes = 100;
+					}
+					string episodeList[20][100];
+					if (numSeasons == 0) {
+						cout << "There are 0 seasons. Cannot accept episodes" << endl;
+					}
+					else {
+						for (int i = 0; i < numSeasons; i++) {
+							cout << "Enter episodes for Season " << i + 1 << ": " << endl;
+							for (int j = 0; j < numEpisodes; j++) {
+								cout << "Enter episode " << j + 1 << ": ";
+								cin >> episodeList[i][j];
+								cout << endl;
+							}
+						}
+					}
+					TVShow tvShow(title, description, director, year, episodeList, numSeasons, numEpisodes);
+					cout << "Calling play and details fuction for Movie object (Task 3.1.b):" << endl;
+					cout << "DETAILS: " << endl;
+					tvShow.play();
+					cout << "PLAY: " << endl;
+					tvShow.details();
+					cout << "Calling function outside class (Task 3.1.c): " << endl;
+					callFunctions(tvShow);
 				}
 				else {
 					TVShow tvShow;
@@ -164,7 +206,7 @@ int main() {
 					string credits[100];
 					ptr = &credits[0];
 					for (int i = 0; i < num_credits; i++) {
-						cout << "Enter credit " << i + 1 << " :" << endl;
+						cout << "Enter credit " << i + 1 << ": " << endl;
 						cin >> credits[i];
 					}
 					Show *movie = new Movie(title, description, director, year, ptr, num_credits);
@@ -190,6 +232,50 @@ int main() {
 			//TV Show Declared as show
 			else if (selection == 5) {
 				if (pConstructorFlag == 'y') {
+					cout << "Enter number of seasons (0-20)" << endl;
+					int numSeasons;
+					cin >> numSeasons;
+					if (numSeasons < 0) {
+						cout << "ERROR: Invalid number of seasons. Setting number of seasons to 0" << endl;
+						numSeasons = 0;
+					}
+					else if (numSeasons > 20) {
+						cout << "ERROR: Invalid number of seasons. Setting number of seasons to 20 (max limit)" << endl;
+						numSeasons = 20;
+					}
+					cout << "Enter number of episodes (0-20)" << endl;
+					int numEpisodes;
+					cin >> numEpisodes;
+					if (numEpisodes < 0) {
+						cout << "ERROR: Invalid number of episodes. Setting number of episodes to 0" << endl;
+						numEpisodes = 0;
+					}
+					else if (numEpisodes > 100) {
+						cout << "ERROR: Invalid number of episodes. Setting number of episodes to 100 (max limit)" << endl;
+						numEpisodes = 100;
+					}
+					string episodeList[20][100];
+					if (numSeasons == 0) {
+						cout << "There are 0 seasons. Cannot accept episodes" << endl;
+					}
+					else {
+						for (int i = 0; i < numSeasons; i++) {
+							cout << "Enter episodes for Season " << i + 1 << ": " << endl;
+							for (int j = 0; j < numEpisodes; j++) {
+								cout << "Enter episode " << j + 1 << ": ";
+								cin >> episodeList[i][j];
+								cout << endl;
+							}
+						}
+					}
+					Show *tvShow = new TVShow(title, description, director, year, episodeList, numSeasons, numEpisodes);
+					cout << "Calling play and details fuction for Movie object (Task 3.1.b):" << endl;
+					cout << "DETAILS: " << endl;
+					tvShow->play();
+					cout << "PLAY: " << endl;
+					tvShow->details();
+					cout << "Calling function outside class (Task 3.1.c): " << endl;
+					callFunctions(*tvShow);
 
 				}
 				else {

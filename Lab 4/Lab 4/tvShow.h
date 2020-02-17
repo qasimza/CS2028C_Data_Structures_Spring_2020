@@ -2,7 +2,7 @@
 #include "Show.h"
 
 class TVShow : public Show{
-	const static int MAX_SEASONS = 12;
+	const static int MAX_SEASONS = 20;
 	const static int MAX_EPISODES = 100;
 	int numSeasons;
 	int numEpisodes;
