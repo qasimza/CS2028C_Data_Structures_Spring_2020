@@ -1,10 +1,13 @@
 ﻿  Game.cpp
-c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\hw 2\hw 2\game.cpp(12): error C2275: 'Player': illegal use of this type as an expression
-  c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\hw 2\hw 2\player.h(6): note: see declaration of 'Player'
-c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\hw 2\hw 2\game.cpp(12): error C2146: syntax error: missing ')' before identifier 'user'
-c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\hw 2\hw 2\game.cpp(12): error C2143: syntax error: missing ';' before '{'
-c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\hw 2\hw 2\game.cpp(12): error C2447: '{': missing function header (old-style formal list?)
-  HardMode.cpp
-  Player.cpp
-  Wheel.cpp
-  Generating Code...
+c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\hw 2\hw 2\game.cpp(33): error C3861: 'makeBet': identifier not found
+c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\hw 2\hw 2\game.cpp(54): warning C4018: '<': signed/unsigned mismatch
+c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\hw 2\hw 2\game.cpp(71): error C2059: syntax error: '{'
+c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\hw 2\hw 2\game.cpp(71): error C2143: syntax error: missing ';' before '{'
+c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\hw 2\hw 2\game.cpp(85): error C2065: 'reponse': undeclared identifier
+c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\hw 2\hw 2\game.cpp(89): error C2679: binary '||': no operator found which takes a right-hand operand of type 'std::string' (or there is no acceptable conversion)
+  c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\hw 2\hw 2\game.cpp(89): note: could be 'built-in C++ operator||(bool, bool)'
+  c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\hw 2\hw 2\game.cpp(89): note: while trying to match the argument list '(bool, std::string)'
+c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\hw 2\hw 2\game.cpp(92): error C2679: binary '||': no operator found which takes a right-hand operand of type 'std::string' (or there is no acceptable conversion)
+  c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\hw 2\hw 2\game.cpp(92): note: could be 'built-in C++ operator||(bool, bool)'
+  c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\hw 2\hw 2\game.cpp(92): note: while trying to match the argument list '(const char [2], std::string)'
+c:\users\zaina\source\repos\qasimza\cs2028c_data_structures_spring_2020\hw 2\hw 2\game.cpp(106): error C3861: 'gameRound': identifier not found

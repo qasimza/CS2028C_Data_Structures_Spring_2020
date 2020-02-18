@@ -7,7 +7,8 @@ class Wheel
 	int lowerBound;
 	int upperBound;
 public:
-	Wheel(); // Sets lower bond to 1 and upper bound to 10 by default
+	Wheel(); // Sets lower bound to 1 and upper bound to 10 by default
+	Wheel(int, int);
 
 	//Setters
 	void setLowerBound(int);
@@ -18,6 +19,6 @@ public:
 	int getUpperBound();
 
 	//Other functions
-	virtual int spin(int); //returns randomly assigned value to ball passed to it
+	virtual int spin(); //returns randomly assigned value to ball passed to it
 };
 
