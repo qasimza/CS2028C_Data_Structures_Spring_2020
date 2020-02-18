@@ -1,53 +1,74 @@
 #include <iostream>
-#include "ShelfOfGames.h"
+#include "Shelf.h"
 
 using namespace std;
 
+const string THIN_LINE = "---------------------------------------------------------------";
+const string THICK_LINE = "===============================================================";
+
 int getMenuOption() {
-	//moditfy this based on task 2
 
 	int input = -1;
 	bool inputCheck = false;
 
-	cout << "Please enter the corresponding number for the desired instance: " << endl;
-	cout << "	1: Show " << endl;
-	cout << "	2: Movie " << endl;
-	cout << "	3: TV Show " << endl;
-	cout << "	4: Movie declared as Show " << endl;
-	cout << "	5: TV Show declared as Show " << endl;
-	cout << "	6: Quit Program " << endl;
-	cout << endl << "Enter Choice (1-6): ";
+	cout << THICK_LINE << endl;
+	cout << "	MENU: " << endl;
+	cout << "	1: Add a Show " << endl;
+	cout << "	2: Remove a Show " << endl;
+	cout << "	3: Display number of Shows " << endl;
+	cout << "	4: Quit " << endl;
+	cout << THIN_LINE << endl;
+	cout << "Enter Choice (1-4): ";
 	cin >> input;
-	cout << endl;
-	while (cin.fail() || input < 1 || input > 6) {
+	while (cin.fail() || input < 1 || input > 4) {
 		cin.clear();
 		cin.ignore();
-		cout << "Please enter a valid input(1-6): ";
+		cout << THIN_LINE << endl;
+		cout << "Please enter a valid input(1-4): ";
 		cin >> input;
-		cout << endl;
 	}
+	cout << THICK_LINE << endl;
 	return input;
 }
 
 
 int main() {
-	ShelfOfGames shelf;
+	Shelf shelf;
 	int option;
+	Show *show;
+	string x, title, description, director;
+	int year;
 	do {
 		option = getMenuOption();
 		switch (option) {
-		case 1:
-			//Add
+		case 1: //Add
+			cout << "ADD A SHOW:" << endl;
+			getline(cin, x);
+			cout << "	Enter Title: ";
+			getline(cin, title);
+			cout << "	Enter Description: ";
+			getline(cin, description);
+			cout << "	Enter Director: ";
+			getline(cin, director);
+			cout << "	Enter Year: ";
+			cin >> year;
+			show = new Show(title, description, director, year);
+			shelf.addShow(*show);
 			break;
-		case 2:
-			//Remove
+		case 2: //Remove
+			cout << "REMOVE A SHOW" << endl;
+			shelf.removeShow();
 			break;
-		case 3:
-			//Get current number of boards
+		case 3: //Get current number of shows
+			cout << "DISPLAY CURRENT NUMBER OF SHOWS" << endl;
+			cout << "	Number of shows on shelf: " << shelf.getNumShows() << endl;
 			break;
-		case 4:
-			cout << "You selected 4. Quitting program" << endl;
+		case 4: //Quit
+			cout << "QUITTING PROGRAM" << endl;
 		default:
 			cout << "CRITICAL ERROR: This should not be happening!" << endl;
 		}
+		cout << THICK_LINE << endl;
 	} while (option != 4);
+	return 0;
+}

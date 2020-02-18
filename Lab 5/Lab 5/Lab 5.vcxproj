@@ -115,10 +115,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="ShelfOfGames.h" />
+    <ClInclude Include="..\..\Lab 4\Lab 4\Show.h" />
+    <ClInclude Include="Shelf.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ShelfOfGames.cpp" />
+    <ClCompile Include="..\..\Lab 4\Lab 4\Show.cpp" />
+    <ClCompile Include="Shelf.cpp" />
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
