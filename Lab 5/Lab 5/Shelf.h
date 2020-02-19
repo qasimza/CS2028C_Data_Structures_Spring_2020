@@ -8,6 +8,17 @@ class Shelf{
 	Show showArray[10];
 
 public:
+	//Exceptions
+	class ShelfOverflow{
+		int showCount;
+	public:
+		ShelfOverflow(int);
+		void error();
+	};
+	class ShelfUnderflow{
+	public:
+		void error();
+	};
 	
 	//Constructor
 	Shelf();

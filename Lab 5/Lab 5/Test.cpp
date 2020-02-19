@@ -35,7 +35,7 @@ int getMenuOption() {
 int main() {
 	Shelf shelf;
 	int option;
-	Show *show;
+	Show *show = NULL;
 	string x, title, description, director;
 	int year;
 	do {
@@ -52,12 +52,26 @@ int main() {
 			getline(cin, director);
 			cout << "	Enter Year: ";
 			cin >> year;
-			show = new Show(title, description, director, year);
-			shelf.addShow(*show);
+			try {
+				show = new Show(title, description, director, year);
+				shelf.addShow(*show);
+			}
+			catch (Shelf::ShelfOverflow e) {
+				cout << "CAUGHT EXCEPTION: " << endl;
+				e.error();
+			}
 			break;
 		case 2: //Remove
 			cout << "REMOVE A SHOW" << endl;
-			shelf.removeShow();
+			try {
+				*show = shelf.removeShow();
+				cout << "Removed Show:" << endl;
+				show->details();
+			}
+			catch (Shelf::ShelfUnderflow e) {
+				cout << "CAUGHT EXCEPTION: " << endl;
+				e.error();
+			}
 			break;
 		case 3: //Get current number of shows
 			cout << "DISPLAY CURRENT NUMBER OF SHOWS" << endl;

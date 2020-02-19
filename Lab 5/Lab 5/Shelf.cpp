@@ -1,5 +1,20 @@
 #include "Shelf.h"
 
+//Exceptions
+Shelf::ShelfOverflow::ShelfOverflow(int cShows) {
+	showCount = cShows;
+}
+
+void Shelf::ShelfOverflow::error() {
+	cout << "Overflow Error: Shelf is full. Cannot add another Show!" << endl;
+	cout << "Maximum Shows Allowed: " << MAX_SHOWS << endl;
+	cout << "Current Number Shows: " << showCount << endl;
+}
+
+void Shelf::ShelfUnderflow::error() {
+	cout << "Underflow Error: Shelf is empty. Cannot remove a Show!" << endl;
+}
+
 //Default Constructor
 Shelf::Shelf(){
 	numShows = 0;
@@ -39,11 +54,21 @@ void Shelf::setShows(Show *uPtr, int uNumShows) {
 
 //Other functions
 void Shelf::addShow(Show uShow) {
-	showArray[numShows] = uShow;
-	numShows++;
+	if (numShows < MAX_SHOWS) {
+		showArray[numShows] = uShow;
+		numShows++;
+	}
+	else {
+		throw ShelfOverflow(numShows);
+	}
 }
 
 Show Shelf::removeShow() {
-	numShows--;
-	return showArray[numShows];
+	if (numShows > 0) {
+		numShows--;
+		return showArray[numShows];
+	}
+	else {
+		throw ShelfUnderflow();
+	}
 }
