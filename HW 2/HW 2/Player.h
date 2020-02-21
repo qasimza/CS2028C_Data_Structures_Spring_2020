@@ -1,4 +1,4 @@
-#pragma once
+
 #include <iostream>
 #include <string>
 #include "Wheel.h"
@@ -31,7 +31,7 @@ public:
 
 	//Other Functions
 	void displayCurrentBalance();
-	void updateBalance(int);
+	void updateBalance(double);
 	int play();
 };
 

@@ -52,8 +52,8 @@ void Player::displayCurrentBalance() {
 	cout << "Current Balance: $" << balance << endl;
 }
 
-void Player::updateBalance(int change) {
-	balance = balance - change * bet;
+void Player::updateBalance(double change) {
+	balance = balance + change * bet;
 }
 
 int Player::play() {

@@ -8,12 +8,14 @@ using namespace std;
 //Default Constructor
 Wheel::Wheel()
 {
+	srand(time(NULL));
 	lowerBound = 1;
 	upperBound = 10;
 }
 
 //Parameterized Constructor
 Wheel::Wheel(int lBound, int uBound) {
+	srand(time(NULL));
 	lowerBound = lBound;
 	upperBound = uBound;
 }
@@ -40,8 +42,6 @@ void Wheel::setUpperBound(int upper_Bound) {
 //Other Functions
 int Wheel::spin()
 {
-	srand(time(NULL));
-
 	int ballVal = 0;
 	int range = upperBound - lowerBound;
 
