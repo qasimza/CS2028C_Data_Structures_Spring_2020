@@ -41,6 +41,7 @@ Queue<Item>::Queue() {
 template <class Item>
 Queue<Item>::Queue(int uSize) {
 	size = uSize;
+	len = 0;
 	ptrArray = new Item[uSize];
 }
 
@@ -63,7 +64,8 @@ void Queue<Item>::enqueue(Item * ptr) {
 template <class Item>
 Item * Queue<Item>::dequeue() {
 	if (!isEmpty()) {
-		Item *front = &ptrArray[0];
+		Item top = ptrArray[0];
+		Item *front = &top;
 		len--;
 		for (int i = 0; i < len; i++) {
 			ptrArray[i] = ptrArray[i + 1];
