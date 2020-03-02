@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Player.h"
 #include "Wheel.h"
+#include "HardMode.h"
 
 const string THIN_LINE = "---------------------------------------------------------------";
 const string THICK_LINE = "================================================================";
@@ -178,9 +179,98 @@ void gameRound(Player *player, Wheel *house) {
 	}
 }
 
+//Hard Mode
+bool gameRoundHard(Player *player, HardMode *house, int houseWins) {
+
+	//declare variables
+	double bet, change;
+	int userRoll;
+	bool hWin;
+
+	//Bet amount
+	bet = getUserBet(*player);
+	player->setBet(bet);
+
+	if (bet != 0) {
+
+		//Spinning wheel
+		userRoll = player->play();
+		cout << "You rolled: " << userRoll << endl;
+
+		//Change factor
+		change = getUserChange(player);
+
+		//Set bet amount
+		double x = bet * change;
+		player->setBet(x);
+
+		//Spin house wheel
+		int houseRoll1 = house->spin(houseWins);
+		int houseRoll2 = house->spin(0);
+
+		cout << THICK_LINE << endl;
+		cout << "Round Summary: " << endl;
+		cout << THIN_LINE << endl;
+
+		cout << "Starting Balance: $" << player->getBalance() << endl;
+		cout << "Betting Amount: $" << bet << endl;
+		cout << "You rolled: " << userRoll << endl;
+		cout << "Change: ";
+		if (change == 0.5) {
+			cout << "Halved wager" << endl;
+			cout << "House Rolled: " << houseRoll1 << ", " << houseRoll2 << endl;
+			if (userRoll <= houseRoll1 && userRoll <= houseRoll2) {
+				cout << "You lost this round!" << endl;
+				player->updateBalance(-1);
+				hWin = true;
+			}
+			else {
+				cout << "You won this round!" << endl;
+				player->updateBalance(0);
+				hWin = false;
+			}
+		}
+		else if (change == 1) {
+			cout << "No change in wager" << endl;
+			cout << "House Rolled: " << houseRoll1 << endl;
+			if (userRoll <= houseRoll1) {
+				cout << "You lost this round!" << endl;
+				player->updateBalance(-1);
+				hWin = true;
+			}
+			else {
+				cout << "You won this round!" << endl;
+				player->updateBalance(1);
+				hWin = false;
+			}
+		}
+		else {
+			cout << "Doubled wager" << endl;
+			cout << "House Rolled: " << houseRoll1 << ", " << houseRoll2 << endl;
+			if (userRoll <= houseRoll1 || userRoll <= houseRoll2) {
+				cout << "You lost this round!" << endl;
+				player->updateBalance(-2);
+				hWin = true;
+			}
+			else {
+				cout << "You won this round!" << endl;
+				player->updateBalance(2);
+				hWin = false;
+			}
+		}
+		player->displayCurrentBalance(); //Displaying current balance
+	}
+	else {
+		cout << "You bet $0! Cashing out." << endl;
+		cout << THICK_LINE << endl;
+		hWin = true;
+	}
+	return hWin;
+}
+
+
 int main() {
 	Player userPlayer;
-	Wheel house, *playerWheel;
 	double bal;
 	cout << THICK_LINE << endl;
 	cout << "Enter your balance: ";
@@ -193,18 +283,44 @@ int main() {
 	userPlayer.setBalance(bal);
 	cout << THICK_LINE << endl;
 	int numValues = getNumRange();
+	Wheel *playerWheel = new Wheel(1, numValues);
+	userPlayer.setWheel(playerWheel);
+
+	//If normal mode
 	if (!getHardMode()){
-		playerWheel = new Wheel(1, numValues);
-		userPlayer.setWheel(playerWheel);
+		Wheel house(1, numValues);
 		do{
 			gameRound(&userPlayer, &house);
 		} while (userPlayer.getBet()!=0 && userPlayer.getBalance()!=0);
 		cout << THICK_LINE << endl;
 		cout << "GAME OVER" << endl;
+		cout << THIN_LINE << endl;
 		userPlayer.displayCurrentBalance();
+		cout << THICK_LINE << endl;
 	}
-	else{
-
+	
+	else{ //If HardMode
+		HardMode house(1, numValues);
+		int hWinCounter = 0;
+		bool hWin;
+		do {
+			hWin = gameRoundHard(&userPlayer, &house, hWinCounter);
+			if (hWin and hWinCounter > -1)
+				hWinCounter++;
+			else if (hWin)
+				hWinCounter = 1;
+			else 
+				hWinCounter = -1;
+			if (hWinCounter == 3)
+			
+				hWinCounter = 0;
+		} while (userPlayer.getBet() != 0 && userPlayer.getBalance() != 0);
+		
+		cout << THICK_LINE << endl;
+		cout << "GAME OVER" << endl;
+		cout << THIN_LINE << endl;
+		userPlayer.displayCurrentBalance();
+		cout << THICK_LINE << endl;
 	}
 	return 0;
 }

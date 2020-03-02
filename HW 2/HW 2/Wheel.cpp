@@ -44,8 +44,6 @@ int Wheel::spin()
 {
 	int ballVal = 0;
 	int range = upperBound - lowerBound;
-
 	ballVal = rand() % (range + 1) + lowerBound;
-
 	return ballVal;
 }
