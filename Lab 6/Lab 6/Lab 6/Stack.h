@@ -10,7 +10,7 @@ class Stack {
 
 	int MAX_SIZE;
 	int top;
-	Item *data;
+	Item data;
 
 
 public:
@@ -30,11 +30,11 @@ public:
 	void setMaxSize(int);
 
 	//Other functions
-	void push(Item*);
+	void push(Item);
 	int* pop();
 	bool isFull();
 	bool isEmpty();
-	Item* topStack();
+	Item topStack();
 	int length();
 	void makeEmpty();	// Use delete
 	int getCapacity();
@@ -45,14 +45,14 @@ template <class Item>
 Stack<Item>::Stack() {
 	MAX_SIZE = 0;
 	top = 0;
-	data = new Item[MAX_SIZE];
+	data = new Item*[MAX_SIZE];
 }
 
 template <class Item>
 Stack<Item>::Stack(int size) {
 	MAX_SIZE = size;
 	top = 0;
-	data = new Item[MAX_SIZE];
+	data = new Item*[MAX_SIZE];
 }
 
 
@@ -69,7 +69,7 @@ void Stack<Item>::setMaxSize(int sizeInput) {
 
 // Stack Functions
 template <class Item>
-void Stack<Item>::push(Item *pointer) {
+void Stack<Item>::push(Item pointer) {
 	if (!isFull()) {
 		data[top] = *pointer;
 		top++;
@@ -105,7 +105,7 @@ bool Stack<Item>::isEmpty() {
 }
 
 template <class Item>
-Item* Stack<Item>::topStack() {
+Item Stack<Item>::topStack() {
 	return &data[top];
 }
 
